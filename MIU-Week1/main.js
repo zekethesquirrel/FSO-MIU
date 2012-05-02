@@ -234,7 +234,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		imageLI.appendChild(newImg);
 	};
 	//Variable Defaults
-	var typeGroups = ["Choose A Category", "Food", "Utility", "Survival", "Fun"],
+	var typeGroups = ["Choose A Category", "Food", "Utility", "Survival", "Comfort", "Fun"],
 		packedValue = "No",
 		errMsg = GE('errors');
 	makeCats();
