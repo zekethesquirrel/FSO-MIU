@@ -33,18 +33,22 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 		
 	};
+	/*
 	// Create browse by category list
 	function makeBrowse(){
-		for (var i=0, j=typeGroups.length; i<j; i++){
+		// i starts at 1 to skip the first option, "Select a category"
+		for (var i=1, j=typeGroups.length; i<j; i++){
 			var makeLI = document.createElement('li');
 			var catText = typeGroups[i];
 			var brLink = document.createElement('a');
 				brLink.href = '#';
 				brLink.innerHTML = catText;
-			makeLI.innerHTML = brLink;
+			makeLI.appendChild(brLink);
 			browseCat.appendChild(makeLI);
+			console.log(catText);
 		};
-	};
+	};	
+	*/
 	// Save to local storage
 	function submitData(key){
 		if(!key){//if no key, generate new one
@@ -251,7 +255,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		errMsg = GE('errors');
 		browseCat = GE('browse');
 	makeCats();
-	makeBrowse();
+	//makeBrowse();
 	
 
 	// Click events
