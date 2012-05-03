@@ -1,7 +1,6 @@
 /*
 Title: Pack it css
 By: Conrad Aube
-For: VFW 04-2012
 */
 body{
 	margin: 0px;
@@ -61,11 +60,25 @@ div{
 nav{
 	text-align: center;
 }
+#searchBox{
+	margin-left:auto;
+	margin-right:auto;
+	width:90%;
+	padding:0;
+}
 #addItem{
 	font-size: larger;
 	font-weight: bolder;
 	margin: 5%;
 	width: 90%;
+}
+#search{
+	width: 85%;
+	margin:0;
+}
+#searchBtn{
+	margin:0;
+	width: 14%;
 }
 #cta{
 	width: 90%;
