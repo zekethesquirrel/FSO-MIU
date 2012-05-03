@@ -66,5 +66,10 @@ nav{
 	font-weight: bolder;
 	margin: 5%;
 	width: 90%;
-	
+}
+#cta{
+	width: 90%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
