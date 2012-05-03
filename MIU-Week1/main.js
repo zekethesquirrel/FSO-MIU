@@ -33,6 +33,18 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 		
 	};
+	// Create browse by category list
+	function makeBrowse(){
+		for (var i=0, j=typeGroups.length; i<j; i++){
+			var makeLI = document.createElement('li');
+			var catText = typeGroups[i];
+			var brLink = document.createElement('a');
+				brLink.href = '#';
+				brLink.innerHTML = catText;
+			makeLI.innerHTML = brLink;
+			browseCat.appendChild(makeLI);
+		};
+	};
 	// Save to local storage
 	function submitData(key){
 		if(!key){//if no key, generate new one
@@ -237,6 +249,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	var typeGroups = ["Choose A Category", "Food", "Utility", "Survival", "Comfort", "Fun"],
 		packedValue = "No",
 		errMsg = GE('errors');
+		browseCat = GE('browse');
 	makeCats();
 	
 
