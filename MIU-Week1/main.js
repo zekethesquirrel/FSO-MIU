@@ -251,6 +251,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		errMsg = GE('errors');
 		browseCat = GE('browse');
 	makeCats();
+	makeBrowse();
 	
 
 	// Click events
