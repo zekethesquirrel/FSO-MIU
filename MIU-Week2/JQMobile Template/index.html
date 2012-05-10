@@ -2,21 +2,21 @@
 <html lang="en">
 	<head>
 	
-		<meta charset="utf-8">
+		<meta charset="utf-8"/>
 		
 		<title>Pack It&#33;</title>
 		
 		<!--  Mobile viewport optimized: j.mp/bplateviewport -->
-		<meta name="HandheldFriendly" content="True">
+		<meta name="HandheldFriendly" content="True"/>
 		<meta name="MobileOptimized" content="320"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		
 		<!-- Mobile IE needs ClearType for smoothing fonts -->
-		<meta http-equiv="cleartype" content="on">
+		<meta http-equiv="cleartype" content="on"/>
 		
 		<!-- StyleSheets under here -->
 		<!-- JQuery CSS -->
-			<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+			<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css"/>
 		<!-- My CSS -->
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
 		
@@ -26,7 +26,7 @@
 	</head>
 	<body>
 		<!-- Main Page -->
-		<div data-role="page" id="Home">
+		<div data-role="page" id="home">
 			<!-- Header -->
 			<div data-role="header" data-position="fixed">
 				<h1>Pack It&#33;</h1>
@@ -34,72 +34,70 @@
 			<!-- Content -->
 			<div data-role="content">
 				<p>Pack It! is a simple packing list app to make sure you don't forget anything.</p>
-				<p><a data-role="button" data-icon="arrow-right" data-iconpos="right" href="#addItem">Start Packing&#33;</a></p>
+				<p><a data-role="button" data-icon="arrow-r" data-iconpos="right" href="#addItem">Start Packing&#33;</a></p>
 				<ul data-role="listview">
-					<li><h2>Browse by Category:</h2></li>
-					<li><a href="#"><img src="images/Food.png"/></a></li>
-					<li></li>
+					<li data-role="list-divider"><h2>Browse List by Category:</h2></li>
+					<li><a href="#"><h3>Food</h3></a></li>
+					<li><a href="#"><h3>Utility</h3></a></li>
+					<li><a href="#"><h3>Survival</h3></a></li>
+					<li><a href="#"><h3>Comfort</h3></a></li>
+					<li><a href="#"><h3>Fun</h3></a></li>
 				</ul>
 			</div>
 			<!-- Footer -->
-			<div data-role="footer" data-position="fixed" >
-				<h4>Footer</h4>
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
+						<li><a href="#item" data-icon="plus">Add Item</a></li>
+						<li><a href="#list" data-icon="search">View List</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		
 		<!-- Add Item Page -->
-		<div data-role="page" id="addItem" data-add-back-btn="true">
+		<div data-role="page" id="item" data-add-back-btn="true">
 			<!-- Header -->
 			<div data-role="header" data-position="fixed">
 				<h1>Pack It&#33;</h1>
 			</div>
 			<!-- Content -->
 			<div data-role="content">
-			<!-- Un-edited additem form -->
-			<form id="addForm" method="post">
-			<fieldset>
-				<legend>Add an Item</legend>
-				<ul id="errors"></ul>
-				
-				<!-- Item Edit Form -->
-				<ul id="form" data-role="listview">
-					<li id="cat"><label for="cat">Category&#58;</label></li>
-					<li><label for="name">Name&#58;</label><input type="text" id="name"/> </li>
-					<li><label for="wght">Weight&#58;</label><input type="range" id="wght"/></li>
-					<li><label for="packed">Packed&#58;</label><input type="checkbox" value="Yes" id="packed"/></li>
-					<li><label for="pdate">Pack Date&#58;</label><input type="date" id="pdate"/></li>
-					<li><label for="note">Notes&#58;</label><textarea id="note" placeholder="Add notes here"></textarea></li>
-				</ul>
-			</fieldset>
-			<input type="submit" id="addItem" value="Add Item"/>
-		</form>
-		<nav>
-			<a href="#" id="clearData">Clear Data</a>
-			<a href="#" id="displayData">Display Data</a>
-			<a href="additem.html" id="showForm" style="display:none;">Back to Form</a>
-		</nav>
-			
+				<p>Add Item Form goes here</p>
 			</div>
-			<!-- Footer -->
-			<div data-role="footer" data-position="fixed">
-				<h4>Footer</h4>
+						<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#item" data-icon="plus" class="ui-btn-active">Add Item</a></li>
+						<li><a href="#list" data-icon="search">View List</a></li>
+					</ul>
+				</div>
 			</div>
-			
-				<!-- Display Data PAge -->
-		<div data-role="page" id="Home">
+		</div>
+		<!-- Display Data Page -->
+		<div data-role="page" id="list">
 			<!-- Header -->
 			<div data-role="header" data-position="fixed">
 				<h1>Pack It&#33;</h1>
 			</div>
 			<!-- Content -->
-			<div data-role="content">
-			<p>CONTENT</p>
-			<p><a data-role="button" data-icon="arrow-right" data-iconpos="right" href="#addItem">Link to add item page</a></p>
-			
-			</div>
+				<div data-role="collapsible-set">
+			<!-- Content to be inserted via JS in collapsible containers -->
+					<div data-role="collapsible" data-collapsed="true">
+						<p>Sample</p>
+					</div>
+				</div>
 			<!-- Footer -->
-			<div data-role="footer" data-position="fixed" >
-				<h4>Footer</h4>
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#item" data-icon="plus">Add Item</a></li>
+						<li><a href="#list" data-icon="search" class="ui-btn-active">View List</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<!-- JavaScript under here -->
