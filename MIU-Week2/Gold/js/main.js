@@ -245,7 +245,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var imageLI = document.createElement('li');
 		makeSubList.appendChild(imageLI);
 		var newImg = document.createElement('img');
-		var setSrc = newImg.setAttribute("src", "images/" + catName + ".png");
+		var setSrc = newImg.setAttribute("src", "//images/icons/" + catName + ".png");
 		imageLI.appendChild(newImg);
 	};
 	//Variable Defaults

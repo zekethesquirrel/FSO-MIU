@@ -5,14 +5,14 @@ By: Conrad Aube
 
 body{
 	margin: 0px;
-	background-image: url(images/paper.png);
+	background-image: url(//images/paper.png);
 	background-size: 100%;
 	background-repeat: repeat-y;
 }
 h1 {
 	margin: 0px;
 	border: 0px ;
-	background-image: url(images/leathertop.png);
+	background-image: url(//images/leathertop.png);
 	background-size: 100%;
 	padding: 0px ;
 	color: white;
