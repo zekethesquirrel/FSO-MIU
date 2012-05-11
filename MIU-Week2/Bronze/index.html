@@ -34,6 +34,7 @@
 			<!-- Header -->
 			<div data-role="header" data-position="fixed">
 				<h1>Pack It&#33;</h1>
+				<a href="http://zekethesquirrel.github.com/FSO-MIU/MIU-Week2/Gold/index.html" data-role="button" data-icon="gear" data-iconpos="right" class="ui-btn-right">Gold</a>
 			</div>
 			<!-- Content -->
 			<div data-role="content">
@@ -120,47 +121,12 @@
 		<div data-role="content">
 			<!-- "News Feed" content faked -->
 			<p>Content currently static</p>
-			<div data-role="collapsible" data-collapsed="true">
-				<h3>Apples</h3>
-				<p><strong>Category:</strong>Food</p>
-				<p><strong>Weight:</strong>1</p>
-				<p><strong>Packed:</strong>Yes</p>
-				<p><strong>Date:</strong>11/10/2012</p>
-				<p><strong>Note:</strong>The red ones are the best</p>
-			</div>
-			<div data-role="collapsible" data-collapsed="true">
-				<h3>Rope</h3>
-				<p><strong>Category:</strong>Utility</p>
-				<p><strong>Weight:</strong>5</p>
-				<p><strong>Packed:</strong>Yes</p>
-				<p><strong>Date:</strong>11/10/2012</p>
-				<p><strong>Note:</strong>Can't have too much rope!</p>
-			</div>
-			<div data-role="collapsible" data-collapsed="true">
-				<h3>Frisbee</h3>
-				<p><strong>Category:</strong>Fun</p>
-				<p><strong>Weight:</strong>1</p>
-				<p><strong>Packed:</strong>No</p>
-				<p><strong>Date:</strong></p>
-				<p><strong>Note:</strong>It's not camping without a frisbee</p>
-			</div>
-			<div data-role="collapsible" data-collapsed="true">
-				<h3>Medkit</h3>
-				<p><strong>Category:</strong>Survival</p>
-				<p><strong>Weight:</strong>3</p>
-				<p><strong>Packed:</strong>Yes</p>
-				<p><strong>Date:</strong>11/10/2012</p>
-				<p><strong>Note:</strong>First Aid!</p>
-			</div>
-			<div data-role="collapsible" data-collapsed="true">
-				<h3>Toilet Paper</h3>
-				<p><strong>Category:</strong>Comfort</p>
-				<p><strong>Weight:</strong>1</p>
-				<p><strong>Packed:</strong>Yes</p>
-				<p><strong>Date:</strong>11/10/2012</p>
-				<p><strong>Note:</strong>Because using the wrong leaf sucks...</p>
-			</div>
-
+			<ul data-role="listview">
+				<li><a href="#item1">Apples</a></li>
+				<li><a href="#item2">Rope</a></li>
+				<li><a href="#item3">Frisbee</a></li>
+				<li><a href="#item4">Medkit</a></li>
+				<li><a href="#item5">Toilet Paper</a></li>
 		</div>
 			<!-- Footer -->
 			<div data-role="footer" data-position="fixed" data-id="universal">
@@ -174,6 +140,96 @@
 			</div>
 		</div>
 		<!-- /Recent Items Page-->
+		
+		<!-- Item1 Page -->
+		<div data-role="page" id="item1" data-theme="e" data-add-back-btn="true">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Apples</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><h3>Category:</h3><p>Food</p></li>
+					<li><h3>Weight:</h3><p>1</p></li>
+					<li><h3>Packed:</h3><p>Yes</p></li>
+					<li><h3>Date:</h3><p>11/10/2012</p></li>
+					<li><h3>Note:</h3><p>The red ones are the best</p></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /Item1 Page -->
+		
+		<!-- item2 Page -->
+		<div data-role="page" id="item2" data-theme="e" data-add-back-btn="true">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Rope</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><h3>Category:</h3><p>Utility</p></li>
+					<li><h3>Weight:</h3><p>5</p></li>
+					<li><h3>Packed:</h3><p>Yes</p></li>
+					<li><h3>Date:</h3><p>11/10/2012</p></li>
+					<li><h3>Note:</h3><p>Can't have too much rope!</p></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /item2 Page -->
+		
+		<!-- item3 Page -->
+		<div data-role="page" id="item3" data-theme="e" data-add-back-btn="true">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Frisbee</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><h3>Category:</h3><p>Fun</p></li>
+					<li><h3>Weight:</h3><p>1</p></li>
+					<li><h3>Packed:</h3><p>No</p></li>
+					<li><h3>Date:</h3><p></p></li>
+					<li><h3>Note:</h3><p>It's not camping without a frisbee</p></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /item3 Page -->
+		
+		<!-- item4 Page -->
+		<div data-role="page" id="item4" data-theme="e" data-add-back-btn="true">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Medkit</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><h3>Category:</h3><p>Survival</p></li>
+					<li><h3>Weight:</h3><p>3</p></li>
+					<li><h3>Packed:</h3><p>Yes</p></li>
+					<li><h3>Date:</h3><p>11/10/2012</p></li>
+					<li><h3>Note:</h3><p>First Aid!</p></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /item4 Page -->
+		
+		<!-- item5 Page -->
+		<div data-role="page" id="item5" data-theme="e" data-add-back-btn="true">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Toilet Paper</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><h3>Category:</h3><p>Comfort</p></li>
+					<li><h3>Weight:</h3><p>1</p></li>
+					<li><h3>Packed:</h3><p>Yes</p></li>
+					<li><h3>Date:</h3><p>11/10/2012</p></li>
+					<li><h3>Note:</h3><p>Because using the wrong leaf sucks...</p></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /item5 Page -->
 		
 		<!-- JavaScript under here -->
 			
