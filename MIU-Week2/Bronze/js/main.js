@@ -208,13 +208,17 @@ window.addEventListener("DOMContentLoaded", function(){
 	// Toggle links
 	function toggleControls(n){
 		switch(n){
-			case "on":
+			case "on": //Showing Data
+				GE('srchBtn').style.display = "none";
+				GE('srchBx').style.display = "none";
 				GE('addForm').style.display = "none";
 				GE('clearData').style.display = "inline";
 				GE('displayData').style.display = "none";
 				GE('showForm').style.display = "inline";
 				break;
-			case "off":
+			case "off": //Showing Form
+				GE('srchBtn').style.display = "none";
+				GE('srchBx').style.display = "none";
 				GE('addForm').style.display = "block";
 				GE('clearData').style.display = "inline";
 				GE('displayData').style.display = "inline";
