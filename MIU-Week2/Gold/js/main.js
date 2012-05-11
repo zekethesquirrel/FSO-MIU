@@ -111,7 +111,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var editLink = document.createElement('a');
 		editLink.href = '#';
 		editLink.key = key;
-		editText = "Edit Item ";
+		editText = "Edit Item	";
 		editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linksLI.appendChild(editLink);
@@ -119,7 +119,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var deleteLink = document.createElement('a');
 			deleteLink.href = '#';
 			deleteLink.key = key;
-			deleteText = "Delete Item";
+			deleteText = "	Delete Item";
 		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLI.appendChild(deleteLink);
