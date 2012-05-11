@@ -2,6 +2,7 @@
 Title: Pack it css
 By: Conrad Aube
 */
+/* Commented out so it doesn't fight with JQM
 body{
 	margin: 0px;
 	background-image: url(images/paper.png);
@@ -80,6 +81,7 @@ nav{
 	margin:0;
 	width: 29%;
 }
+*/
 #cta{
 	width: 90%;
 	display: block;

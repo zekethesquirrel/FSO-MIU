@@ -9,6 +9,20 @@ window.addEventListener("DOMContentLoaded", function(){
 		var theElement = document.getElementById(x);
 		return theElement;
 	};
+	/* Create browse by category list - Can't get to style properly for JQM
+	function makeBrowse(){
+		// i starts at 1 to skip the first option, "Select a category"
+		for (var i=1, j=typeGroups.length; i<j; i++){
+			var makeLI = document.createElement('li');
+			var catText = typeGroups[i];
+			var brLink = document.createElement('a');
+				brLink.href = '#';
+				brLink.innerHTML = catText;
+			makeLI.appendChild(brLink);
+			browseCat.appendChild(makeLI);
+		};
+	};
+	*/
 	//Create select field elements and add options
 	function makeCats(){
 		var formTag = document.getElementsByTagName("form"), //array of form tags
@@ -33,22 +47,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 		
 	};
-	/*
-	// Create browse by category list
-	function makeBrowse(){
-		// i starts at 1 to skip the first option, "Select a category"
-		for (var i=1, j=typeGroups.length; i<j; i++){
-			var makeLI = document.createElement('li');
-			var catText = typeGroups[i];
-			var brLink = document.createElement('a');
-				brLink.href = '#';
-				brLink.innerHTML = catText;
-			makeLI.appendChild(brLink);
-			browseCat.appendChild(makeLI);
-			console.log(catText);
-		};
-	};	
-	*/
+
 	// Save to local storage
 	function submitData(key){
 		if(!key){//if no key, generate new one
