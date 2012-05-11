@@ -10,21 +10,22 @@ window.addEventListener("DOMContentLoaded", function(){
 		return theElement;
 	};
 
-	// Create browse by category list
 	function makeBrowse(){
-		// i starts at 1 to skip the first option, "Select a category"
+		// 'i' starts at 1 to skip the first option, "Select a category"
 		for (var i=1, j=typeGroups.length; i<j; i++){
 			var makeLI = document.createElement('li');
+			var makeH3 = document.createElement('h3');
 			var catText = typeGroups[i];
 			var brLink = document.createElement('a');
 				brLink.href = '#';
 				brLink.innerHTML = catText;
-			makeLI.appendChild(brLink);
+			makeH3.appendChild(brLink);
+			makeLI.appendChild(makeH3);
 			browseCat.appendChild(makeLI);
 		};
-	};
+	};*/
 	//Variable Defaults
 	var typeGroups = ["Choose A Category", "Food", "Utility", "Survival", "Comfort", "Fun"],
 		browseCat = GE('browse');
-	makeBrowse();
+	//makeBrowse();
 });
