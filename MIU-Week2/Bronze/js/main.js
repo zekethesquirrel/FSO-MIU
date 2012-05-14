@@ -24,6 +24,12 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 		selectLI.appendChild(makeSelect);
 	};
+	//Search Function
+	var search = GE('srchBtn');
+		search.addEventListener("click", getSearch);
+		
+	
+	
 	// Find checkbox value
 	function getSelectedCheck(){
 		if(GE('packed').checked){
