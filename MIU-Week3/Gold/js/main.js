@@ -1,6 +1,38 @@
 // VFW Week 4
 // Conrad Aube
 
+//JQM Friendly JS
+
+var parseAddForm = function(data){
+	//uses form data here;
+	console.log (data);
+};
+
+$(document).ready(function(){
+	var addForm = $('addForm');
+	
+	addform.validate({
+		invalidHandler: function(form, validator){},
+		submitHandler: function(){
+			var data = addForm.serializeArray();
+			parseAddForm(data);
+		}
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Wait for DOM
 window.addEventListener("DOMContentLoaded", function(){
 	

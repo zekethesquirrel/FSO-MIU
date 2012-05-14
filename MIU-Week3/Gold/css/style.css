@@ -82,9 +82,17 @@ nav{
 	width: 29%;
 }
 */
+/* Call to Action scaling */
 #cta{
 	width: 90%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
+/* JQM Validation Error Styling */
+label.error{
+	display:block;
+	margin:10px 0;
+	color:red;
+}
+
