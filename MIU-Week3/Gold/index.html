@@ -40,7 +40,7 @@
 			<div data-role="content">
 				<img id="cta" src="images/bkpk.png" width="device-width"/>
 				<p>Pack It! is a simple packing list app to make sure you don't forget anything.</p>
-				<p><a data-role="button" data-icon="arrow-r" data-iconpos="right" href="additem.html">Start Packing&#33;</a></p>
+				<p><a data-role="button" data-icon="arrow-r" data-iconpos="right" href="#add">Start Packing&#33;</a></p>
 				<ul data-role="listview" id="browse" data-filter="true">
 					<li data-role="list-divider"><h2>Browse List by Category:</h2></li>
 					<li><a href="#soon"><img src="images/icons/Food.png"/><h3>Food</h3></a></li>
@@ -55,13 +55,36 @@
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
-						<li><a href="additem.html" data-icon="plus">Add Item</a></li>
+						<li><a href="#add" data-icon="plus">Add Item</a></li>
 						<li><a href="#recent" data-icon="star">Recent Items</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<!-- /Home Page-->
+		
+		<!-- Add Item Page -->
+		<div data-role="page" id="add" data-theme="e">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Pack It&#33;</h1>
+			</div>
+			<!-- Content -->
+			<div data-role="content">
+				<p>Form goes here!</p>
+			</div>
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#add" data-icon="plus">Add Item</a></li>
+						<li><a href="#recent" data-icon="star">Recent Items</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Add Item Page-->
 		
 		<!-- Soon Page -->
 		<div data-role="page" id="soon" data-theme="e">
@@ -78,7 +101,7 @@
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#home" data-icon="home">Home</a></li>
-						<li><a href="additem.html" data-icon="plus">Add Item</a></li>
+						<li><a href="#add" data-icon="plus">Add Item</a></li>
 						<li><a href="#recent" data-icon="star">Recent Items</a></li>
 					</ul>
 				</div>
@@ -143,7 +166,7 @@
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#home" data-icon="home">Home</a></li>
-						<li><a href="additem.html" data-icon="plus">Add Item</a></li>
+						<li><a href="#add" data-icon="plus">Add Item</a></li>
 						<li><a href="#recent" data-icon="star" class="ui-btn-active">Recent Items</a></li>
 					</ul>
 				</div>
