@@ -71,15 +71,28 @@
 			</div>
 			<!-- Content -->
 			<div data-role="content">
-				<p>Form goes here!</p>
 				<form action="placeholder" method="post" id="addForm"><!-- Add Item Form -->
 					<legend> Add an Item</legend>
-					<label for="name">Name</label><input type="text" name="name" id="name" value=""/>
-					<label for="cat">Category</label><!-- category field -->
+					<label for="name">Name</label><!-- Item Name -->
+						<input type="text" name="name" id="name" value=""/>
+					<label for="cat">Category</label><!-- Select Category -->
+						<select name="cat" class="select" id="cats">
+							<option value="Option1">Select Options</option>
+							<option value="Option2">will be added</option>
+							<option value="Option3">with Javascript</option>
+						</select>
 					<label for="wght">Weight:</label><!-- Range Slider -->
-					<label for="packed">Packed?</label><!-- Checkbox or maybe toggle -->
+						<input type="range" name="wght" id="wght" value="5" min="0" max="15" data-highlight="true"/>
+					<label for="packed">Packed?</label><!-- Packed Toggle Slider -->
+						<select name="packed" id="packed" data-role="slider">
+							<option value="no">No</option>
+							<option value="yes">Yes</option>
+						</select>
 					<label for="pdate">Date Packed:</label><!-- Date Field -->
-					<label for="note">Notes:</label><textarea name="note" id="note" value="" placeholder="Add notes here..."></textarea>
+						<input type="date" name="pdate" id="pdate" value=""/>
+					<label for="note">Notes:</label>
+						<textarea name="note" id="note" value="" placeholder="Add notes here..."></textarea>
+					<input type="submit" id="addItem" value="Add Item"/>
 				</form>
 			</div>
 			<!-- Footer -->
