@@ -72,6 +72,15 @@
 			<!-- Content -->
 			<div data-role="content">
 				<p>Form goes here!</p>
+				<form action="placeholder" method="post" id="addForm"><!-- Add Item Form -->
+					<legend> Add an Item</legend>
+					<label for="name">Name</label><input type="text" name="name" id="name" value=""/>
+					<label for="cat">Category</label><!-- category field -->
+					<label for="wght">Weight:</label><!-- Range Slider -->
+					<label for="packed">Packed?</label><!-- Checkbox or maybe toggle -->
+					<label for="pdate">Date Packed:</label><!-- Date Field -->
+					<label for="note">Notes:</label><textarea name="note" id="note" value="" placeholder="Add notes here..."></textarea>
+				</form>
 			</div>
 			<!-- Footer -->
 			<div data-role="footer" data-position="fixed" data-id="universal">
