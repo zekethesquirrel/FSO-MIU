@@ -37,7 +37,7 @@ $(document).ready(function(){
 window.addEventListener("DOMContentLoaded", function(){
 	
 	// get element by ID
-	function GE(x)	{
+	function GE(x){
 		var theElement = document.getElementById(x);
 		return theElement;
 	};
