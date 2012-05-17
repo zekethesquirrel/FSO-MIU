@@ -95,4 +95,6 @@ label.error{
 	margin:10px 0;
 	color:red;
 }
-
+#itemIcon{
+	width: 100px;
+}

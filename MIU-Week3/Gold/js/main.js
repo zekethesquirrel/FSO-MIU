@@ -7,27 +7,41 @@ var parseAddForm = function(data){
 	//uses form data here;
 	console.log (data);
 };
-
+// Wait for DOM
 $(document).ready(function(){
-	var addForm = $('addForm');
+
+	var addForm = $('#itemForm');
 	
-	addform.validate({
+	addForm.validate({
 		invalidHandler: function(form, validator){},
 		submitHandler: function(){
-			var data = addForm.serializeArray();
-			parseAddForm(data);
+			/* JQuery Form Handling
+			var data = addForm.serialize();
+			parseAddForm(data);		*/
+			//Old Form Handling
+		if(!key){//if no key, generate new one
+			var id = Math.floor(Math.random()*10000000000);
+			var alertTxt = "Item added!";
+		}else{//If key exists, edit existing item
+			id = key;
+			var alertTxt = "Item updated!";
+		};
+		//Get form values, store in object
+		//object properties contain array with label and value
+		getSelectedCheck();
+		var item = {};
+			item.name = ["Name", GE('name').value];
+			item.cat = ["Category", GE('cats').value];
+			item.wght = ["Weight", GE('wght').value];
+			item.packed = ["Packed", packedValue];
+			item.date = ["Date", GE('pdate').value];
+			item.note = ["Notes", GE('note').value];
+		//Stringify and save
+		localStorage.setItem(id, JSON.stringify(item));
+		alert(alertTxt);
 		}
 	});
-});
 
-
-
-//=================================================
-
-
-// Wait for DOM
-window.addEventListener("DOMContentLoaded", function(){
-	
 	// get element by ID
 	function GE(x){
 		var theElement = document.getElementById(x);
@@ -36,17 +50,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	//Create select field elements and add options
 	function makeCats(){
 		var formTag = document.getElementsByTagName("form"), //array of form tags
-			selectLI = GE('cat'),
-			makeSelect = document.createElement('select');
-			makeSelect.setAttribute('id', 'cats');
+			selectSelect = GE('cats');
 		for (var i=0, j=typeGroups.length; i<j; i++){
 			var makeOptions = document.createElement('option');
 			var optText = typeGroups[i];
 			makeOptions.setAttribute("value", optText);
 			makeOptions.innerHTML = optText;
-			makeSelect.appendChild(makeOptions);
+			selectSelect.appendChild(makeOptions);
 		};
-		selectLI.appendChild(makeSelect);
 	};
 	// Find checkbox value
 	function getSelectedCheck(){
@@ -86,8 +97,8 @@ window.addEventListener("DOMContentLoaded", function(){
 		//object properties contain array with label and value
 		getSelectedCheck();
 		var item = {};
-			item.cat = ["Category", GE('cats').value];
 			item.name = ["Name", GE('name').value];
+			item.cat = ["Category", GE('cats').value];
 			item.wght = ["Weight", GE('wght').value];
 			item.packed = ["Packed", packedValue];
 			item.date = ["Date", GE('pdate').value];
@@ -98,18 +109,16 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 	// Retrieve local storage and display it
 	function getLocalData(){
-		toggleControls("on");
+		//toggleControls("on");
 		if(localStorage.length === 0){
 			alert("No data in local storage. Loading test data.")
 			autoFill();
 		};
 		//Write data from local storage
-		var makeDiv = document.createElement('div');
-		makeDiv.setAttribute("id", "items");
+		var selectPage = GE('listContent');
 		var makeList = document.createElement('ul');
-		makeDiv.appendChild(makeList);
-		document.body.appendChild(makeDiv);
-		GE('items').style.display = "block";
+			makeList.setAttribute('data-role', 'listview')
+		selectPage.appendChild(makeList);
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var makeLI = document.createElement('li');
 			var linksLI = document.createElement('li');
@@ -118,8 +127,15 @@ window.addEventListener("DOMContentLoaded", function(){
 			var value = localStorage.getItem(key);
 			var dataObj = JSON.parse(value); //Convert local storage string to object
 			var makeSubList = document.createElement('ul');
+				makeSubList.setAttribute('data-role', 'listview');
+			var makeLIHeader = document.createElement('h3');
+				makeLIHeader.innerHTML = dataObj.name[1];
+			var makeLISubText = document.createElement('p');
+				makeLISubText.innerHTML = dataObj.cat[0]+": "+dataObj.cat[1];
+			getImage(makeLI, dataObj.cat[1]);
+			makeLI.appendChild(makeLIHeader);
+			makeLI.appendChild(makeLISubText);
 			makeLI.appendChild(makeSubList);
-			getImage(makeSubList, dataObj.cat[1]);
 			for(var n in dataObj){
 				var makeSubLI = document.createElement('li');
 				makeSubList.appendChild(makeSubLI);
@@ -154,7 +170,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		//Get info from local storage
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
-		toggleControls("off"); //shows form
+		//toggleControls("off"); //shows form
 		//Populate form fields
 		GE('cats').value = item.cat[1];
 		GE('name').value = item.name[1];
@@ -170,7 +186,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		GE('addItem').value = "Edit Item";
 		var editSubmit = GE('addItem');
 		// Save key value as property of editSubmit event
-		editSubmit.addEventListener("click", validate);
+		//editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;
 	};
 	//Delete Item Function
@@ -196,7 +212,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		//Error Messages
 		var errMess = [];
 		//Category Validation
-		if(getCat.value === "Choose A Category"){
+		if(getCat.value === ""){
 			var catErr = "Please select a category!";
 			getCat.style.border = "1px solid red";
 			errMess.push(catErr);
@@ -230,6 +246,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		};		
 	};
 	// Toggle links
+	/*
 	function toggleControls(n){
 		switch(n){
 			case "on":
@@ -249,6 +266,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				return false;
 		};
 	};
+	*/
 	// Clear local storage
 	function clearLocalData(){
 		if(localStorage.length === 0){
@@ -267,15 +285,13 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 	//Get image for data based on category
 	function getImage(makeSubList, catName){
-		var imageLI = document.createElement('li');
-		makeSubList.appendChild(imageLI);
 		var newImg = document.createElement('img');
-			newImg.id = 'icon'
+			newImg.id = 'itemIcon'
 		var setSrc = newImg.setAttribute("src", "images/icons/" + catName + ".png");
-		imageLI.appendChild(newImg);
+		makeSubList.appendChild(newImg);
 	};
 	//Variable Defaults
-	var typeGroups = ["Choose A Category", "Food", "Utility", "Survival", "Comfort", "Fun"],
+	var typeGroups = ["Food", "Utility", "Survival", "Comfort", "Fun"],
 		packedValue = "No",
 		errMsg = GE('errors');
 		browseCat = GE('browse');
@@ -291,6 +307,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	clearLink.addEventListener("click", clearLocalData);
 	
 	var submitLink = GE('addItem');
-	submitLink.addEventListener("click", validate);
+	//submitLink.addEventListener("click", validate);
 	
 });
