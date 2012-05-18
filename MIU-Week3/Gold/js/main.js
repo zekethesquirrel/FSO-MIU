@@ -9,6 +9,11 @@ var parseAddForm = function(data){
 };
 // Wait for DOM
 $(document).ready(function(){
+	// get element by ID
+	function GE(x){
+		var theElement = document.getElementById(x);
+		return theElement;
+	};
 
 	var addForm = $('#itemForm');
 	
@@ -19,34 +24,29 @@ $(document).ready(function(){
 			var data = addForm.serialize();
 			parseAddForm(data);		*/
 			//Old Form Handling
-		if(!key){//if no key, generate new one
-			var id = Math.floor(Math.random()*10000000000);
-			var alertTxt = "Item added!";
-		}else{//If key exists, edit existing item
-			id = key;
-			var alertTxt = "Item updated!";
-		};
-		//Get form values, store in object
-		//object properties contain array with label and value
-		getSelectedCheck();
-		var item = {};
-			item.name = ["Name", GE('name').value];
-			item.cat = ["Category", GE('cats').value];
-			item.wght = ["Weight", GE('wght').value];
-			item.packed = ["Packed", packedValue];
-			item.date = ["Date", GE('pdate').value];
-			item.note = ["Notes", GE('note').value];
-		//Stringify and save
-		localStorage.setItem(id, JSON.stringify(item));
-		alert(alertTxt);
-		}
+			if(!key){//if no key, generate new one
+				var id = Math.floor(Math.random()*10000000000);
+				var alertTxt = "Item added!";
+			}else{//If key exists, edit existing item
+				id = key;
+				alertTxt = "Item updated!";
+			};
+			//Get form values, store in object
+			//object properties contain array with label and value
+			getSelectedCheck();
+			var item = {};
+				item.name = ["Name", GE('name').value];
+				item.cat = ["Category", GE('cats').value];
+				item.wght = ["Weight", GE('wght').value];
+				item.packed = ["Packed", packedValue];
+				item.date = ["Date", GE('pdate').value];
+				item.note = ["Notes", GE('note').value];
+			//Stringify and save
+			localStorage.setItem(id, JSON.stringify(item));
+			alert(alertTxt);
+			}
 	});
 
-	// get element by ID
-	function GE(x){
-		var theElement = document.getElementById(x);
-		return theElement;
-	};
 	//Create select field elements and add options
 	function makeCats(){
 		var formTag = document.getElementsByTagName("form"), //array of form tags
@@ -111,64 +111,57 @@ $(document).ready(function(){
 	function getLocalData(){
 		//toggleControls("on");
 		if(localStorage.length === 0){
-			alert("No data in local storage. Loading test data.")
+			alert("No data in local storage. Loading test data.");
 			autoFill();
 		};
 		//Write data from local storage
-		var selectPage = GE('listContent');
-		var makeList = document.createElement('ul');
-			makeList.setAttribute('data-role', 'listview')
-		selectPage.appendChild(makeList);
+		$("#itemList").empty();
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var makeLI = document.createElement('li');
-			var linksLI = document.createElement('li');
-			makeList.appendChild(makeLI);
 			var key = localStorage.key(i);
-			var value = localStorage.getItem(key);
-			var dataObj = JSON.parse(value); //Convert local storage string to object
-			var makeSubList = document.createElement('ul');
-				makeSubList.setAttribute('data-role', 'listview');
-			var makeLIHeader = document.createElement('h3');
-				makeLIHeader.innerHTML = dataObj.name[1];
-			var makeLISubText = document.createElement('p');
-				makeLISubText.innerHTML = dataObj.cat[0]+": "+dataObj.cat[1];
-			getImage(makeLI, dataObj.cat[1]);
-			makeLI.appendChild(makeLIHeader);
-			makeLI.appendChild(makeLISubText);
-			makeLI.appendChild(makeSubList);
-			for(var n in dataObj){
-				var makeSubLI = document.createElement('li');
-				makeSubList.appendChild(makeSubLI);
-				var optSubText = dataObj[n][0]+": "+dataObj[n][1];
-				makeSubLI.innerHTML = optSubText;
-				makeSubList.appendChild(linksLI);
-			};
-			makeItemLinks(localStorage.key(i), linksLI); //Create edit and delete buttons
+			//var value = localStorage.getItem(key);
+			var dataObj = JSON.parse(localStorage.getItem(key)); //Convert local storage string to object
+			console.log(dataObj.cat[1]);
+			var makeSubList = $("<li></li>");
+			var makeSubLI = $('<img src="images/icons/' + dataObj.cat[1] + '.png">' +
+				"<h3>" + dataObj.name[1] + "</h3>" +
+				"<p><strong>" + dataObj.cat[0] + ":</strong> " + dataObj.cat[1] + "</p>" +
+				"<p><strong>" + dataObj.wght[0] + ":</strong> " + dataObj.wght[1] + "</p>" +
+				"<p><strong>" + dataObj.packed[0] + ":</strong> " + dataObj.packed[1] + "</p>" +
+				"<p><strong>" + dataObj.date[0] + ":</strong> " + dataObj.date[1] + "</p>" +
+				"<p><strong>" + dataObj.note[0] + ":</strong> " + dataObj.note[1] + "</p>");
+			var makeLink = $("<a href='#' id='"+key+"'>Edit Item</a>");
+				makeLink.on('click', editItem());
 		};
+		$("#itemList").listview('refresh');
 	};
 	// Make item links function
-	function makeItemLinks(key, linksLI){
+	function makeItemLinks(key, linksDiv){
 		//Edit Item
 		var editLink = document.createElement('a');
-		editLink.href = '#';
-		editLink.key = key;
-		editText = "Edit Item ";
-		editLink.addEventListener("click", editItem);
-		editLink.innerHTML = editText;
-		linksLI.appendChild(editLink);
+			editLink.setAttribute('data-role', 'button');
+			editLink.setAttribute('data-icon', 'gear');
+			editLink.href = '#';
+			editLink.key = key;
+			editText = "Edit Item ";
+			editLink.addEventListener("click", editItem);
+			editLink.innerHTML = editText;
+		linksDiv.appendChild(editLink);
 		//Delete Item
 		var deleteLink = document.createElement('a');
+			deleteLink.setAttribute('data-role', 'button');
+			deleteLink.setAttribute('data-icon', 'delete');
 			deleteLink.href = '#';
 			deleteLink.key = key;
 			deleteText = "Delete Item";
-		deleteLink.addEventListener("click", deleteItem);
-		deleteLink.innerHTML = deleteText;
-		linksLI.appendChild(deleteLink);
+			deleteLink.addEventListener("click", deleteItem);
+			deleteLink.innerHTML = deleteText;
+		linksDiv.appendChild(deleteLink);
 	};
 	// Edit Item Funciton
 	function editItem(){
 		//Get info from local storage
-		var value = localStorage.getItem(this.key);
+		var value = localStorage.getItem(this.id);
 		var item = JSON.parse(value);
 		//toggleControls("off"); //shows form
 		//Populate form fields
@@ -187,13 +180,13 @@ $(document).ready(function(){
 		var editSubmit = GE('addItem');
 		// Save key value as property of editSubmit event
 		//editSubmit.addEventListener("click", validate);
-		editSubmit.key = this.key;
+		editSubmit.key = this.id;
 	};
 	//Delete Item Function
 	function deleteItem(){
 		var ask = confirm("Delete this item?");
 		if(ask){
-			localStorage.removeItem(this.key);
+			localStorage.removeItem(this.id);
 			alert("Item deleted!")
 			window.location.reload();
 		}else{
