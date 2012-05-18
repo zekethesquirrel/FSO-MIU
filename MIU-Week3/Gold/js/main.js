@@ -117,7 +117,8 @@ $(document).ready(function(){
 		//Write data from local storage
 		var selectPage = GE('listContent');
 		var makeList = document.createElement('ul');
-			makeList.setAttribute('data-role', 'listview')
+			makeList.setAttribute('data-role', 'listview');
+			makeList.setAttribute('data-filter', 'true');
 		selectPage.appendChild(makeList);
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var makeLI = document.createElement('li');
