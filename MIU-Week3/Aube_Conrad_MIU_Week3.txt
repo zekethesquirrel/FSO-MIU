@@ -4,6 +4,10 @@ MIU Week 3
 Repository:
 https://github.com/zekethesquirrel/FSO-MIU/tree/master/MIU-Week3
 
+Broken Branch: This is the code I was working on for hours that only seemed to get worse as I went along…
+https://github.com/zekethesquirrel/FSO-MIU/tree/Broken/MIU-Week3
+
+
 Live Gold:
 http://zekethesquirrel.github.com/FSO-MIU/MIU-Week3/Gold/index.html
 
