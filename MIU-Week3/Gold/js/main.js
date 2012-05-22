@@ -8,21 +8,19 @@ var parseAddForm = function(data){
 	console.log (data);
 };
 // Wait for DOM
-$(document).ready(function(){
+$(document).bind('pageinit', function(){
+
 	// get element by ID
 	function GE(x){
 		var theElement = document.getElementById(x);
 		return theElement;
-	};
+	}
 
 	var addForm = $('#itemForm');
 	
 	addForm.validate({
 		invalidHandler: function(form, validator){},
 		submitHandler: function(){
-			/* JQuery Form Handling
-			var data = addForm.serialize();
-			parseAddForm(data);		*/
 			//Old Form Handling
 			if(!key){//if no key, generate new one
 				var id = Math.floor(Math.random()*10000000000);
@@ -30,17 +28,14 @@ $(document).ready(function(){
 			}else{//If key exists, edit existing item
 				id = key;
 				alertTxt = "Item updated!";
-			};
+			}
+			// JQuery Form Handling
+			var data = addForm.serialize();
+			console.log (data);
+			//parseAddForm(data);	
 			//Get form values, store in object
 			//object properties contain array with label and value
 			getSelectedCheck();
-			var item = {};
-				item.name = ["Name", GE('name').value];
-				item.cat = ["Category", GE('cats').value];
-				item.wght = ["Weight", GE('wght').value];
-				item.packed = ["Packed", packedValue];
-				item.date = ["Date", GE('pdate').value];
-				item.note = ["Notes", GE('note').value];
 			//Stringify and save
 			localStorage.setItem(id, JSON.stringify(item));
 			alert(alertTxt);
@@ -59,31 +54,15 @@ $(document).ready(function(){
 			selectSelect.appendChild(makeOptions);
 		};
 	};
-	// Find checkbox value
-	function getSelectedCheck(){
+	// Find checkbox value = No checkboxes in form =
+	/*function getSelectedCheck(){
 		if(GE('packed').checked){
 			packedValue = GE('packed').value;
 		}else{
 			packedValue = "No";
 		};
 		
-	};
-	/*
-	// Create browse by category list
-	function makeBrowse(){
-		// i starts at 1 to skip the first option, "Select a category"
-		for (var i=1, j=typeGroups.length; i<j; i++){
-			var makeLI = document.createElement('li');
-			var catText = typeGroups[i];
-			var brLink = document.createElement('a');
-				brLink.href = '#';
-				brLink.innerHTML = catText;
-			makeLI.appendChild(brLink);
-			browseCat.appendChild(makeLI);
-			console.log(catText);
-		};
-	};	
-	*/
+	};*/
 	// Save to local storage
 	function submitData(key){
 		if(!key){//if no key, generate new one
@@ -113,6 +92,7 @@ $(document).ready(function(){
 		if(localStorage.length === 0){
 			alert("No data in local storage. Loading test data.");
 			autoFill();
+			console.log(localStorage.length)
 		};
 		//Write data from local storage
 		$("#itemList").empty();
@@ -121,7 +101,8 @@ $(document).ready(function(){
 			var key = localStorage.key(i);
 			//var value = localStorage.getItem(key);
 			var dataObj = JSON.parse(localStorage.getItem(key)); //Convert local storage string to object
-			console.log(dataObj.cat[1]);
+			console.log(i)
+			console.log (dataObj)
 			var makeSubList = $("<li></li>");
 			var makeSubLI = $('<img src="images/icons/' + dataObj.cat[1] + '.png">' +
 				"<h3>" + dataObj.name[1] + "</h3>" +
