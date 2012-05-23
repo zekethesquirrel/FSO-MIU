@@ -109,7 +109,6 @@ $(document).ready(function(){
 	};
 	// Retrieve local storage and display it
 	function getLocalData(){
-		//toggleControls("on");
 		if(localStorage.length === 0){
 			alert("No data in local storage. Loading test data.")
 			autoFill();
@@ -119,14 +118,9 @@ $(document).ready(function(){
 		//Loop through data and make list items
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var makeLI = $("<li id='listItem"+i+"'></li>");
-			//var linksLI = document.createElement('li');
-			//makeLI.appendTo(makeList)
-			//makeList.appendChild(makeLI);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
 			var dataObj = JSON.parse(value); //Convert local storage string to object
-			//var makeSubList = document.createElement('ul');
-			//	makeSubList.setAttribute('data-role', 'listview');
 			var optSubText = $( "<img src='images/icons/"+dataObj.cat[1]+".png'/>"+
 				"<h3>"+dataObj.name[1]+"</h3>"+
 				"<p>"+dataObj.cat[0]+": "+dataObj.cat[1]+"</p>"+
@@ -134,29 +128,8 @@ $(document).ready(function(){
 				"<p>"+dataObj.packed[0]+": "+dataObj.packed[1]+"</p>"+
 				"<p>"+dataObj.date[0]+": "+dataObj.date[1]+"</p>"+
 				"<p>"+dataObj.note[0]+": "+dataObj.note[1]+"</p>" );
-			//getImage(makeLI, dataObj.cat[1]);
 			optSubText.appendTo("#listItem"+i);
 			makeLI.append(optSubText).appendTo("#itemList");
-			//var makeSubLI = document.createElement('li');
-			//makeSubList.appendChild(makeSubLI);
-			//makeSubLI.html = optSubText;
-			//makeSubList.appendChild(linksLI);
-
-			/*for(var n in dataObj){
-				var makeSubLI = document.createElement('li');
-				makeSubList.appendChild(makeSubLI);
-				var optSubText = dataObj[n][0]+": "+dataObj[n][1];
-				/var optSubText = $("<h3>"+dataObj.name[1]+"</h3>"+
-					"<p>"dataObj.cat[0]+": "+dataObj.cat[1]+"</p>">+
-					"<p>"dataObj.wght[0]+": "+dataObj.wght[1]+"</p>">+
-					"<p>"dataObj.packed[0]+": "+dataObj.packed[1]+"</p>">+
-					"<p>"dataObj.date[0]+": "+dataObj.date[1]+"</p>">+
-					"<p>"dataObj.note[0]+": "+dataObj.note[1]+"</p>">+
-					);/
-				makeSubLI.innerHTML = optSubText;
-				makeSubList.appendChild(linksLI);
-			};*/
-			//makeItemLinks(localStorage.key(i), linksLI); //Create edit and delete buttons
 		};
 	};
 	// Make item links function
