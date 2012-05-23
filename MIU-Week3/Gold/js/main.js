@@ -5,7 +5,7 @@
 
 var parseAddForm = function(data){
 	//uses form data here;
-	console.log (data);
+	console.log(data);
 };
 // Wait for DOM
 $(document).ready(function(){
@@ -115,36 +115,48 @@ $(document).ready(function(){
 			autoFill();
 		};
 		//Write data from local storage
-		var selectPage = GE('listContent');
-		var makeList = document.createElement('ul');
-			makeList.setAttribute('data-role', 'listview');
-			makeList.setAttribute('data-filter', 'true');
-		selectPage.appendChild(makeList);
+		$("#itemList").empty();
+		//Loop through data and make list items
 		for(var i=0, j=localStorage.length; i<j; i++){
-			var makeLI = document.createElement('li');
-			var linksLI = document.createElement('li');
-			makeList.appendChild(makeLI);
+			var makeLI = $("<li id='listItem"+i+"'></li>");
+			//var linksLI = document.createElement('li');
+			//makeLI.appendTo(makeList)
+			//makeList.appendChild(makeLI);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
 			var dataObj = JSON.parse(value); //Convert local storage string to object
-			var makeSubList = document.createElement('ul');
-				makeSubList.setAttribute('data-role', 'listview');
-			var makeLIHeader = document.createElement('h3');
-				makeLIHeader.innerHTML = dataObj.name[1];
-			var makeLISubText = document.createElement('p');
-				makeLISubText.innerHTML = dataObj.cat[0]+": "+dataObj.cat[1];
-			getImage(makeLI, dataObj.cat[1]);
-			makeLI.appendChild(makeLIHeader);
-			makeLI.appendChild(makeLISubText);
-			makeLI.appendChild(makeSubList);
-			for(var n in dataObj){
+			//var makeSubList = document.createElement('ul');
+			//	makeSubList.setAttribute('data-role', 'listview');
+			var optSubText = $( "<img src='images/icons/"+dataObj.cat[1]+".png'/>"+
+				"<h3>"+dataObj.name[1]+"</h3>"+
+				"<p>"+dataObj.cat[0]+": "+dataObj.cat[1]+"</p>"+
+				"<p>"+dataObj.wght[0]+": "+dataObj.wght[1]+"</p>"+
+				"<p>"+dataObj.packed[0]+": "+dataObj.packed[1]+"</p>"+
+				"<p>"+dataObj.date[0]+": "+dataObj.date[1]+"</p>"+
+				"<p>"+dataObj.note[0]+": "+dataObj.note[1]+"</p>" );
+			//getImage(makeLI, dataObj.cat[1]);
+			optSubText.appendTo("#listItem"+i);
+			makeLI.append(optSubText).appendTo("#itemList");
+			//var makeSubLI = document.createElement('li');
+			//makeSubList.appendChild(makeSubLI);
+			//makeSubLI.html = optSubText;
+			//makeSubList.appendChild(linksLI);
+
+			/*for(var n in dataObj){
 				var makeSubLI = document.createElement('li');
 				makeSubList.appendChild(makeSubLI);
 				var optSubText = dataObj[n][0]+": "+dataObj[n][1];
+				/var optSubText = $("<h3>"+dataObj.name[1]+"</h3>"+
+					"<p>"dataObj.cat[0]+": "+dataObj.cat[1]+"</p>">+
+					"<p>"dataObj.wght[0]+": "+dataObj.wght[1]+"</p>">+
+					"<p>"dataObj.packed[0]+": "+dataObj.packed[1]+"</p>">+
+					"<p>"dataObj.date[0]+": "+dataObj.date[1]+"</p>">+
+					"<p>"dataObj.note[0]+": "+dataObj.note[1]+"</p>">+
+					);/
 				makeSubLI.innerHTML = optSubText;
 				makeSubList.appendChild(linksLI);
-			};
-			makeItemLinks(localStorage.key(i), linksLI); //Create edit and delete buttons
+			};*/
+			//makeItemLinks(localStorage.key(i), linksLI); //Create edit and delete buttons
 		};
 	};
 	// Make item links function
@@ -285,12 +297,12 @@ $(document).ready(function(){
 		};
 	};
 	//Get image for data based on category
-	function getImage(makeSubList, catName){
+	/*function getImage(makeSubList, catName){
 		var newImg = document.createElement('img');
 			newImg.id = 'itemIcon'
 		var setSrc = newImg.setAttribute("src", "images/icons/" + catName + ".png");
 		makeSubList.appendChild(newImg);
-	};
+	};*/
 	//Variable Defaults
 	var typeGroups = ["Food", "Utility", "Survival", "Comfort", "Fun"],
 		packedValue = "No",
