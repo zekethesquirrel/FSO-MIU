@@ -60,14 +60,14 @@ $(document).ready(function(){
 		};
 	};
 	// Find checkbox value
-	function getSelectedCheck(){
+	/*function getSelectedCheck(){
 		if(GE('packed').checked){
 			packedValue = GE('packed').value;
 		}else{
 			packedValue = "No";
 		};
 		
-	};
+	};*/
 	/*
 	// Create browse by category list
 	function makeBrowse(){
@@ -121,6 +121,7 @@ $(document).ready(function(){
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
 			var dataObj = JSON.parse(value); //Convert local storage string to object
+			//Write out data to list
 			var optSubText = $( "<img src='images/icons/"+dataObj.cat[1]+".png'/>"+
 				"<h3>"+dataObj.name[1]+"</h3>"+
 				"<p>"+dataObj.cat[0]+": "+dataObj.cat[1]+"</p>"+
@@ -128,42 +129,38 @@ $(document).ready(function(){
 				"<p>"+dataObj.packed[0]+": "+dataObj.packed[1]+"</p>"+
 				"<p>"+dataObj.date[0]+": "+dataObj.date[1]+"</p>"+
 				"<p>"+dataObj.note[0]+": "+dataObj.note[1]+"</p>" );
-			optSubText.appendTo("#listItem"+i);
-			makeLI.append(optSubText).appendTo("#itemList");
+			//Create Edit Link
+			var editLink = $("<a href='#' id='edit"+key+"'> Edit Item</a>");
+				editLink.key = key;
+				editLink.bind('click', function(){
+					console.log("This button would edit "+this.id)
+				});
+			//Creat Delete Link
+			var deleteLink = $("<a href='#' id='edit"+key+"'>Delete Item</a>");
+				deleteLink.key = key;
+				deleteLink.bind('click', function(){
+					console.log("This button would delete "+this.id)
+				});
+			//Make item data the edit link
+			editLink.html(optSubText);
+			//Append edit and delete links to the list
+			makeLI.append(editLink, deleteLink).appendTo("#itemList");
 		};
-	};
-	// Make item links function
-	function makeItemLinks(key, linksLI){
-		//Edit Item
-		var editLink = document.createElement('a');
-		editLink.href = '#';
-		editLink.key = key;
-		editText = "Edit Item ";
-		editLink.addEventListener("click", editItem);
-		editLink.innerHTML = editText;
-		linksLI.appendChild(editLink);
-		//Delete Item
-		var deleteLink = document.createElement('a');
-			deleteLink.href = '#';
-			deleteLink.key = key;
-			deleteText = "Delete Item";
-		deleteLink.addEventListener("click", deleteItem);
-		deleteLink.innerHTML = deleteText;
-		linksLI.appendChild(deleteLink);
+	$("#itemList").listview('refresh');
 	};
 	// Edit Item Funciton
 	function editItem(){
 		//Get info from local storage
-		var value = localStorage.getItem(this.key);
+		var value = localStorage.getItem(parseInt(this.id));
 		var item = JSON.parse(value);
-		//toggleControls("off"); //shows form
 		//Populate form fields
 		GE('cats').value = item.cat[1];
 		GE('name').value = item.name[1];
 		GE('wght').value = item.wght[1];
-		if(item.packed[1] == "Yes"){
+		GE('packed').value = item.packed[1];
+		/*if(item.packed[1] == "Yes"){
 			GE('packed').setAttribute("checked", "checked");
-		};
+		};*/
 		GE('pdate').value = item.date[1];
 		GE('note').value = item.note[1];
 		// Remove listener for add item
@@ -173,7 +170,7 @@ $(document).ready(function(){
 		var editSubmit = GE('addItem');
 		// Save key value as property of editSubmit event
 		//editSubmit.addEventListener("click", validate);
-		editSubmit.key = this.key;
+		editSubmit.key = this.id;
 	};
 	//Delete Item Function
 	function deleteItem(){
