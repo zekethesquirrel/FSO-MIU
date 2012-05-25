@@ -1,0 +1,11 @@
+Conrad Aube
+MIU Week 4
+
+Repository:
+https://github.com/zekethesquirrel/FSO-MIU/tree/master/MIU-Week4
+
+Live Gold:
+http://zekethesquirrel.github.com/FSO-MIU/MIU-Week4/Gold/index.html
+
+Live Bronze:
+http://zekethesquirrel.github.com/FSO-MIU/MIU-Week4/Bronze/index.html

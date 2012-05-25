@@ -1,0 +1,5 @@
+Mrs. Alarcon,
+I'm sure this really won't help my grade on this project at all, but I feel I should try to justify why it appears I did nothing to 'prettify' my app. Honestly, I spent my entire week just trying to get the form to actually function. I can not seem to get it to edit or add items. I can pull from my json just fine, and delete them from local storage, but I just can not get anything to save to local storage correctly. I know I really should have asked for help instead of waste all my time making almost no progress, but I'm stubborn. 
+
+Thanks for all you've tought me,
+Conrad Aube
