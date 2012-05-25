@@ -15,13 +15,13 @@ $(document).ready(function(){
 	addForm.validate({
 		invalidHandler: function(form, validator){},
 		submitHandler: function(){
-			console.log($('#addItem').id)
-			//submitData(this.key);
+			//console.log($('#addItem').id)
+			submitData(this.key);
 		}
-		});
+	});
 
 	// get element by ID
-	function GE(x){
+	var GE = function (x){
 		var theElement = document.getElementById(x);
 		return theElement;
 	};
@@ -63,31 +63,24 @@ $(document).ready(function(){
 	};	
 	*/
 	// Save to local storage
-	function submitData(key){
+	var submitData = function (key){
 		if(!key){//if no key, generate new one
-			var id = Math.floor(Math.random()*10000000000);
+			var key = Math.floor(Math.random()*10000000000);
 			var alertTxt = "Item added!";
 		}else{//If key exists, edit existing item
-			id = key;
+			key = key;
 			var alertTxt = "Item updated!";
 		};
-		//Get form values, store in object
-		//object properties contain array with label and value
+		//Get form values and create a string
 		var data = addForm.serialize();
-		console.log(data)
-		//var item = {};
-		//	item.name = ["Name", GE('name').value];
-		//	item.cat = ["Category", GE('cats').value];
-		//	item.wght = ["Weight", GE('wght').value];
-		//	item.packed = ["Packed", packedValue];
-		//	item.date = ["Date", GE('pdate').value];
-		//	item.note = ["Notes", GE('note').value];
-		//Stringify and save
-		//localStorage.setItem(id, JSON.stringify(item));
+		//Save form data to local storage
+		localStorage.setItem(key, data);
 		alert(alertTxt);
+		$('span.ui-controlgroup-last').html('Add Item')
+		getLocalData();
 	};
 	// Retrieve local storage and display it
-	function getLocalData(){
+	var getLocalData = function (){
 		if(localStorage.length === 0){
 			alert("No data in local storage. Loading test data.")
 			autoFill();
@@ -97,9 +90,8 @@ $(document).ready(function(){
 		//Loop through data and make list items
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var makeLI = $("<li id='listItem"+i+"'></li>");
-			var key = localStorage.key(i);
-			var value = localStorage.getItem(key);
-			var dataObj = JSON.parse(value); //Convert local storage string to object
+			var theKey = localStorage.key(i);
+			var dataObj = JSON.parse(localStorage.getItem(theKey)); //Convert local storage string to object
 			//Write out data to list
 			var optSubText = $( "<img src='images/icons/"+dataObj.cat[1]+".png'/>"+
 				"<h3>"+dataObj.name[1]+"</h3>"+
@@ -109,12 +101,12 @@ $(document).ready(function(){
 				"<p>"+dataObj.date[0]+": "+dataObj.date[1]+"</p>"+
 				"<p>"+dataObj.note[0]+": "+dataObj.note[1]+"</p>" );
 			//Create Edit Link
-			var editLink = $("<a href='#add' id='edit"+key+"'> Edit Item</a>");
+			var editLink = $("<a href='#add' id='edit"+theKey+"'> Edit Item</a>");
 				editLink.bind('click', function(){
 					editItem(this.id);
 				});
 			//Create Delete Link
-			var deleteLink = $("<a href='#list' id='delete"+key+"'>Delete Item</a>");
+			var deleteLink = $("<a href='#list' id='delete"+theKey+"'>Delete Item</a>");
 				deleteLink.bind('click', function(){
 					deleteItem(this.id)
 				});
@@ -126,11 +118,10 @@ $(document).ready(function(){
 	$("#itemList").listview('refresh');
 	};
 	// Edit Item Funciton
-	function editItem(id){
+	var editItem = function (id){
 		//Get info from local storage
 		var key = parseInt(id.match(/\d+/g));
-		var value = localStorage.getItem(key);
-		var item = JSON.parse(value);
+		var item = JSON.parse(localStorage.getItem(key));
 		//Populate form fields
 		GE('cats').value = item.cat[1];
 		GE('name').value = item.name[1];
@@ -139,7 +130,7 @@ $(document).ready(function(){
 		GE('pdate').value = item.date[1];
 		GE('note').value = item.note[1];
 		// Remove listener for add item
-		submitLink.removeEventListener("click", submitData);
+		//submitLink.removeEventListener("click", submitData);
 		//Change "Add Item" to "Edit Item"
 		$('span.ui-controlgroup-last').html('Edit Item')
 		// Save key value as property of #addItem
@@ -149,7 +140,7 @@ $(document).ready(function(){
 		$('select#packed').slider('refresh');
 	};
 	//Delete Item Function
-	function deleteItem(id){
+	var deleteItem = function (id){
 		var ask = confirm("Delete this item?");
 		var key = parseInt(id.match(/\d+/g));
 		if(ask){
@@ -198,7 +189,7 @@ $(document).ready(function(){
 		};
 	};
 	//Load data from json.js and store in local storage
-	function autoFill(){
+	var autoFill = function (){
 		alert("Running Autofill Function!")
 		for(var n in json){
 			var id = Math.floor(Math.random()*10000000000);
@@ -206,7 +197,7 @@ $(document).ready(function(){
 		};		
 	};
 	// Clear local storage
-	function clearLocalData(){
+	var clearLocalData = function (){
 		if(localStorage.length === 0){
 			alert("Packing list is already empty!");
 		}else{
@@ -214,7 +205,6 @@ $(document).ready(function(){
 			if(ask){
 				localStorage.clear();
 				alert("Packing list cleared!");
-				window.location.reload();
 				return false;
 			}else{
 				alert("Packing list not cleared.")
