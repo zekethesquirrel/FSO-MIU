@@ -15,32 +15,10 @@ $(document).ready(function(){
 	addForm.validate({
 		invalidHandler: function(form, validator){},
 		submitHandler: function(){
-			/* JQuery Form Handling
-			var data = addForm.serialize();
-			parseAddForm(data);		*/
-			//Old Form Handling
-		if(!key){//if no key, generate new one
-			var id = Math.floor(Math.random()*10000000000);
-			var alertTxt = "Item added!";
-		}else{//If key exists, edit existing item
-			id = key;
-			var alertTxt = "Item updated!";
-		};
-		//Get form values, store in object
-		//object properties contain array with label and value
-		getSelectedCheck();
-		var item = {};
-			item.name = ["Name", GE('name').value];
-			item.cat = ["Category", GE('cats').value];
-			item.wght = ["Weight", GE('wght').value];
-			item.packed = ["Packed", packedValue];
-			item.date = ["Date", GE('pdate').value];
-			item.note = ["Notes", GE('note').value];
-		//Stringify and save
-		localStorage.setItem(id, JSON.stringify(item));
-		alert(alertTxt);
+			console.log($('#addItem').id)
+			//submitData(this.key);
 		}
-	});
+		});
 
 	// get element by ID
 	function GE(x){
@@ -95,16 +73,17 @@ $(document).ready(function(){
 		};
 		//Get form values, store in object
 		//object properties contain array with label and value
-		getSelectedCheck();
-		var item = {};
-			item.name = ["Name", GE('name').value];
-			item.cat = ["Category", GE('cats').value];
-			item.wght = ["Weight", GE('wght').value];
-			item.packed = ["Packed", packedValue];
-			item.date = ["Date", GE('pdate').value];
-			item.note = ["Notes", GE('note').value];
+		var data = addForm.serialize();
+		console.log(data)
+		//var item = {};
+		//	item.name = ["Name", GE('name').value];
+		//	item.cat = ["Category", GE('cats').value];
+		//	item.wght = ["Weight", GE('wght').value];
+		//	item.packed = ["Packed", packedValue];
+		//	item.date = ["Date", GE('pdate').value];
+		//	item.note = ["Notes", GE('note').value];
 		//Stringify and save
-		localStorage.setItem(id, JSON.stringify(item));
+		//localStorage.setItem(id, JSON.stringify(item));
 		alert(alertTxt);
 	};
 	// Retrieve local storage and display it
@@ -130,16 +109,14 @@ $(document).ready(function(){
 				"<p>"+dataObj.date[0]+": "+dataObj.date[1]+"</p>"+
 				"<p>"+dataObj.note[0]+": "+dataObj.note[1]+"</p>" );
 			//Create Edit Link
-			var editLink = $("<a href='#' id='edit"+key+"'> Edit Item</a>");
-				editLink.key = key;
+			var editLink = $("<a href='#add' id='edit"+key+"'> Edit Item</a>");
 				editLink.bind('click', function(){
-					console.log("This button would edit "+this.id)
+					editItem(this.id);
 				});
-			//Creat Delete Link
-			var deleteLink = $("<a href='#' id='edit"+key+"'>Delete Item</a>");
-				deleteLink.key = key;
+			//Create Delete Link
+			var deleteLink = $("<a href='#list' id='delete"+key+"'>Delete Item</a>");
 				deleteLink.bind('click', function(){
-					console.log("This button would delete "+this.id)
+					deleteItem(this.id)
 				});
 			//Make item data the edit link
 			editLink.html(optSubText);
@@ -149,36 +126,36 @@ $(document).ready(function(){
 	$("#itemList").listview('refresh');
 	};
 	// Edit Item Funciton
-	function editItem(){
+	function editItem(id){
 		//Get info from local storage
-		var value = localStorage.getItem(parseInt(this.id));
+		var key = parseInt(id.match(/\d+/g));
+		var value = localStorage.getItem(key);
 		var item = JSON.parse(value);
 		//Populate form fields
 		GE('cats').value = item.cat[1];
 		GE('name').value = item.name[1];
 		GE('wght').value = item.wght[1];
 		GE('packed').value = item.packed[1];
-		/*if(item.packed[1] == "Yes"){
-			GE('packed').setAttribute("checked", "checked");
-		};*/
 		GE('pdate').value = item.date[1];
 		GE('note').value = item.note[1];
 		// Remove listener for add item
 		submitLink.removeEventListener("click", submitData);
 		//Change "Add Item" to "Edit Item"
-		GE('addItem').value = "Edit Item";
-		var editSubmit = GE('addItem');
-		// Save key value as property of editSubmit event
-		//editSubmit.addEventListener("click", validate);
-		editSubmit.key = this.id;
+		$('span.ui-controlgroup-last').html('Edit Item')
+		// Save key value as property of #addItem
+		$('#addItem').attr('key', key)
+		//Refresh the select menus
+		$('select#cats').selectmenu('refresh');
+		$('select#packed').slider('refresh');
 	};
 	//Delete Item Function
-	function deleteItem(){
+	function deleteItem(id){
 		var ask = confirm("Delete this item?");
+		var key = parseInt(id.match(/\d+/g));
 		if(ask){
-			localStorage.removeItem(this.key);
+			localStorage.removeItem(key);
 			alert("Item deleted!")
-			window.location.reload();
+			getLocalData();
 		}else{
 			alert("Item NOT deleted.")
 		};
@@ -228,28 +205,6 @@ $(document).ready(function(){
 			localStorage.setItem(id, JSON.stringify(json[n]));
 		};		
 	};
-	// Toggle links
-	/*
-	function toggleControls(n){
-		switch(n){
-			case "on":
-				GE('addForm').style.display = "none";
-				GE('clearData').style.display = "inline";
-				GE('displayData').style.display = "none";
-				GE('showForm').style.display = "inline";
-				break;
-			case "off":
-				GE('addForm').style.display = "block";
-				GE('clearData').style.display = "inline";
-				GE('displayData').style.display = "inline";
-				GE('showForm').style.display = "none";
-				GE('items').style.display = "none";
-				break;
-			default:
-				return false;
-		};
-	};
-	*/
 	// Clear local storage
 	function clearLocalData(){
 		if(localStorage.length === 0){
@@ -266,21 +221,12 @@ $(document).ready(function(){
 			};
 		};
 	};
-	//Get image for data based on category
-	/*function getImage(makeSubList, catName){
-		var newImg = document.createElement('img');
-			newImg.id = 'itemIcon'
-		var setSrc = newImg.setAttribute("src", "images/icons/" + catName + ".png");
-		makeSubList.appendChild(newImg);
-	};*/
 	//Variable Defaults
 	var typeGroups = ["Food", "Utility", "Survival", "Comfort", "Fun"],
 		packedValue = "No",
 		errMsg = GE('errors');
 		browseCat = GE('browse');
 	makeCats();
-	//makeBrowse();
-	
 
 	// Click events
 	var displayLink = GE('displayData');
@@ -291,5 +237,5 @@ $(document).ready(function(){
 	
 	var submitLink = GE('addItem');
 	//submitLink.addEventListener("click", validate);
-	
 });
+	

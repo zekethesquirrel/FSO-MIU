@@ -94,8 +94,8 @@
 					<div data-role="fieldcontain"><!-- Packed Toggle Slider -->
 						<label for="packed">Packed?</label>
 						<select name="packed" id="packed" data-role="slider">
-							<option value="no">No</option>
-							<option value="yes">Yes</option>
+							<option value="No">No</option>
+							<option value="Yes">Yes</option>
 						</select>
 					</div>
 					<div data-role="fieldcontain"><!-- Date Field -->
@@ -107,7 +107,7 @@
 						<textarea name="note" id="note" value="" placeholder="Add notes here..."></textarea>
 					</div>
 					<div data-role="fieldcontain"><!-- Submit and cancel buttons -->
-						<div data-role="controlgroup" data-type="horizontal">
+						<div data-role="controlgroup" id="formButtons" data-type="horizontal">
 							<input type="reset" id="reset" value="Reset" data-theme="c"/>
 							<input type="submit" id="addItem" value="Add Item" data-theme="b"/>
 						</div>
@@ -136,7 +136,7 @@
 			<!-- Content -->
 			<div data-role="content" id="listContent">
 				<!-- Item list generated via JS -->
-				<ul data-role="listview" id="itemList" data-split-icon="delete">
+				<ul data-role="listview" id="itemList" data-split-icon="delete" data-filter="true">
 				</ul>
 			</div>
 			<!-- Footer -->
