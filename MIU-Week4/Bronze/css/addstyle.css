@@ -1,0 +1,93 @@
+/*
+Title: Pack it css
+By: Conrad Aube
+*/
+
+body{
+	margin: 0px;
+	background-image: url(images/paper.png);
+	background-size: 100%;
+	background-repeat: repeat-y;
+}
+h1 {
+	margin: 0px;
+	border: 0px ;
+	background-image: url(images/leathertop.png);
+	background-size: 100%;
+	padding: 0px ;
+	color: white;
+	text-align: center;
+	text-decoration: underline;
+}
+h2 {
+	text-align: center;
+}
+textarea {
+	display: block;
+	width: 80%;
+	height: 50px;
+	margin-top: -3px;
+}
+fieldset {
+	font-weight: bold;
+	padding: 0px;
+	
+}
+legend {
+	font-size: larger;
+	font-weight: bolder;
+	
+}
+ul{
+	list-style-type: none;
+	line-height: 27px;
+}
+p{
+	margin-top: 1px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-bottom: 15px;
+	font-size: large;
+	line-height: 27px;
+}
+a:visited{
+	color: navy;
+}
+a:link{
+	color: black;
+}
+div{
+	font-size: large;	
+}
+nav{
+	text-align: center;
+}
+#searchBox{
+	margin-left:auto;
+	margin-right:auto;
+	width:90%;
+	padding:0;
+}
+#addItem{
+	font-size: larger;
+	font-weight: bolder;
+	margin: 5%;
+	width: 90%;
+}
+#search{
+	width: 70%;
+	margin:0;
+}
+#searchBtn{
+	margin:0;
+	width: 29%;
+}
+#cta{
+	width: 90%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#icon{
+	width: 50px;
+}

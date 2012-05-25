@@ -1,0 +1,258 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<!-- Charset -->
+		<meta charset="utf-8"/>
+		<!-- Site Description -->
+		<meta name="description" content="Pack It! A checkilist to help you pack for a trip and make sure you don't forget anything!"/>
+		<!-- Author -->
+		<meta name="author" content="Conrad Aube"/>
+		<!-- Keywords -->
+		<meta name="keywords" content="pack, trip, checklist"/>
+		<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+		<meta name="HandheldFriendly" content="True"/>
+		<meta name="MobileOptimized" content="320"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<!-- Search Engine Behavior -->
+		<meta name="robots" content="noindex, nofollow"/>
+		<!-- Mobile IE needs ClearType for smoothing fonts -->
+		<meta http-equiv="cleartype" content="on"/>
+		<!-- StyleSheets under here -->
+		<!-- JQuery CSS -->
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css"/>
+		<!-- My CSS -->
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+		<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+		<script src="js/libs/modernizr.custom.min.js"></script>
+		<!-- Page Title -->
+		<title>Pack It&#33;</title>
+	</head>
+	<!-- /head -->
+	<body>
+		<!-- Home Page -->
+		<div data-role="page" id="home" data-theme="e">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Pack It&#33;</h1>
+				<a href="http://zekethesquirrel.github.com/FSO-MIU/MIU-Week3/Bronze/index.html" data-role="button" data-icon="gear" data-iconpos="right" class="ui-btn-right" data-ajax="false">Bronze</a>
+			</div>
+			<!-- Content -->
+			<div data-role="content">
+				<img id="cta" src="images/bkpk.png" width="device-width"/>
+				<p>Pack It! is a simple packing list app to make sure you don't forget anything.</p>
+				<p><a data-role="button" data-icon="arrow-r" data-iconpos="right" href="#add" data-transition="slide">Start Packing&#33;</a></p>
+				<ul data-role="listview" id="browse" data-filter="true">
+					<li data-role="list-divider"><h2>Browse List by Category:</h2></li>
+					<li><a href="#soon"><img src="images/icons/Food.png"/><h3>Food</h3></a></li>
+					<li><a href="#soon"><img src="images/icons/Utility.png"/><h3>Utility</h3></a></li>
+					<li><a href="#soon"><img src="images/icons/Survival.png"/><h3>Survival</h3></a></li>
+					<li><a href="#soon"><img src="images/icons/Comfort.png"/><h3>Comfort</h3></a></li>
+					<li><a href="#soon"><img src="images/icons/Fun.png"/><h3>Fun</h3></a></li>
+				</ul>
+			</div>
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
+						<li><a href="#add" data-icon="plus" data-transition="slide">Add Item</a></li>
+						<li><a href="#recent" data-icon="star" data-transition="slide">Recent Items</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Home Page-->
+		<!-- Add Item Page -->
+		<div data-role="page" id="add" data-theme="e">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Pack It&#33;</h1>
+				<a href="#list" id="displayData" data-icon="check" class="ui-btn-right">View List</a>
+			</div>
+			<!-- Content -->
+			<div data-role="content">
+				<form action="" method="post" id="itemForm"><!-- Add Item Form -->
+					<!-- List for old style error msgs -->
+					<ul data-role="listview" id="errors"></ul>
+					<legend> Add an Item</legend>
+					<div data-role="fieldcontain"><!-- Item Name -->
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name" value="" placeholder="Apples" class="required"/>
+					</div>
+					<div data-role="fieldcontain"><!-- Select Category -->
+						<label for="cats">Category</label>
+						<select name="cats" class="select" id="cats">
+							<option data-placegolder="true" value="">Choose a Category</option>
+							<!-- Options added via JS -->
+						</select>
+					</div>
+					<div data-role="fieldcontain"><!-- Range Slider -->
+						<label for="wght">Weight:</label>
+						<input type="range" name="wght" id="wght" value="5" min="0" max="15" data-highlight="true"/>
+					</div>
+					<div data-role="fieldcontain"><!-- Packed Toggle Slider -->
+						<label for="packed">Packed?</label>
+						<select name="packed" id="packed" data-role="slider">
+							<option value="No">No</option>
+							<option value="Yes">Yes</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain"><!-- Date Field -->
+						<label for="pdate">Date Packed:</label>
+						<input type="date" name="pdate" id="pdate" value=""/>
+					</div>
+					<div data-role="fieldcontain"><!-- Notes Field -->
+						<label for="note">Notes:</label>
+						<textarea name="note" id="note" value="" placeholder="Add notes here..."></textarea>
+					</div>
+					<div data-role="fieldcontain"><!-- Submit and cancel buttons -->
+						<div data-role="controlgroup" id="formButtons" data-type="horizontal">
+							<input type="reset" id="reset" value="Reset" data-theme="c"/>
+							<input type="submit" id="addItem" value="Add Item" data-theme="b"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a></li>
+						<li><a href="#add" data-icon="plus"  class="ui-btn-active">Add Item</a></li>
+						<li><a href="#recent" data-icon="star" data-transition="slide">Recent Items</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Add Item Page-->
+		<!-- List Page -->
+		<div data-role="page" id="list" data-theme="e" data-add-back-btn="true">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed">
+				<h1>Packing List</h1>
+				<a href="#add" id="clearData" data-icon="delete" class="ui-btn-right">Clear List </a>
+			</div>
+			<!-- Content -->
+			<div data-role="content" id="listContent">
+				<!-- Item list generated via JS -->
+				<ul data-role="listview" id="itemList" data-split-icon="delete" data-filter="true">
+				</ul>
+			</div>
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#add" data-icon="plus">Add Item</a></li>
+						<li><a href="#recent" data-icon="star">Recent Items</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /List Page-->
+
+		<!-- Soon Page -->
+		<div data-role="page" id="soon" data-theme="e">
+			<!-- Header -->
+			<div data-role="header" data-position="fixed" data-add-back-btn="true">
+				<h1>Pack It&#33;</h1>
+			</div>
+			<!-- Content -->
+			<div data-role="content">
+				<p>Coming soon!</p>
+			</div>
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#add" data-icon="plus">Add Item</a></li>
+						<li><a href="#recent" data-icon="star">Recent Items</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Soon Page-->
+		<!-- Recently Added Page -->
+		<div data-role="page" id="recent" data-theme="e">
+		<!-- Header -->
+		<div data-role="header" data-position="fixed">
+			<h1>Recently Added Items</h1>
+		</div>
+		<!-- Content -->
+		<div data-role="content">
+			<!-- "News Feed" content faked -->
+			<p>Content currently static</p>
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>Apples</h3>
+				<p><strong>Category:</strong>Food</p>
+				<p><strong>Weight:</strong>1</p>
+				<p><strong>Packed:</strong>Yes</p>
+				<p><strong>Date:</strong>11/10/2012</p>
+				<p><strong>Note:</strong>The red ones are the best</p>
+			</div>
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>Rope</h3>
+				<p><strong>Category:</strong>Utility</p>
+				<p><strong>Weight:</strong>5</p>
+				<p><strong>Packed:</strong>Yes</p>
+				<p><strong>Date:</strong>11/10/2012</p>
+				<p><strong>Note:</strong>Can't have too much rope!</p>
+			</div>
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>Frisbee</h3>
+				<p><strong>Category:</strong>Fun</p>
+				<p><strong>Weight:</strong>1</p>
+				<p><strong>Packed:</strong>No</p>
+				<p><strong>Date:</strong></p>
+				<p><strong>Note:</strong>It's not camping without a frisbee</p>
+			</div>
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>Medkit</h3>
+				<p><strong>Category:</strong>Survival</p>
+				<p><strong>Weight:</strong>3</p>
+				<p><strong>Packed:</strong>Yes</p>
+				<p><strong>Date:</strong>11/10/2012</p>
+				<p><strong>Note:</strong>First Aid!</p>
+			</div>
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>Toilet Paper</h3>
+				<p><strong>Category:</strong>Comfort</p>
+				<p><strong>Weight:</strong>1</p>
+				<p><strong>Packed:</strong>Yes</p>
+				<p><strong>Date:</strong>11/10/2012</p>
+				<p><strong>Note:</strong>Because using the wrong leaf sucks...</p>
+			</div>
+
+		</div>
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed" data-id="universal">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a></li>
+						<li><a href="#add" data-icon="plus" data-transition="slide" data-direction="reverse">Add Item</a></li>
+						<li><a href="#recent" data-icon="star" class="ui-btn-active">Recent Items</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Recent Items Page-->
+		
+		<!-- JavaScript under here -->
+		<!-- JQuery Mobile CDN -->
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		
+		<!-- Validate Plugin -->
+		<script src="js/libs/jquery.validate.min.js" type="text/javascript"></script>
+		
+		<!-- JSON Data -->
+		<script src="js/json.js" type="text/javascript"></script>
+	
+		<!-- Main Javascript-->
+		<script src="js/main.js" type="text/javascript"></script>
+		
+		
+	</body>
+</html>
